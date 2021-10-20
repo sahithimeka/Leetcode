@@ -1,0 +1,45 @@
+https://leetcode.com/problems/reverse-words-in-a-string/   
+Difficulty Level: Medium; Tags: String, Stacks
+
+
+class Solution {
+public:
+    string reverseWords(string s) {
+         
+        string temp="",temp2="";
+        stack<string> stack;
+        std::string::iterator i;
+        for(i=s.begin();i!=s.end();i++ )
+        {
+            if(*i!=' ')
+            {
+                temp.push_back(*i);
+            }
+            else
+            {
+                if(temp.length()!=0)
+                {
+                   //Stack push & empty temp; 
+                temp.push_back(' ');
+                stack.push(temp); 
+                temp="";
+                    
+                }
+                else
+                    continue; //skip if space
+            }
+        }
+          if(temp.length()!=0)
+        {
+        stack.push(" ");
+        stack.push(temp);
+        }        
+       while(!stack.empty())
+        {
+            temp2+=stack.top();
+            stack.pop();
+        }
+        temp2.pop_back();
+        return temp2;
+    }
+};
