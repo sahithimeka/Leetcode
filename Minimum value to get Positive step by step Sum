@@ -1,0 +1,31 @@
+Problem : https://leetcode.com/problems/minimum-value-to-get-positive-step-by-step-sum
+Difficulty level: Easy; Tags: Array, Prefix sum; 
+
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        int start=0,sum=0;
+        if(nums[0]>=0)
+            start=1;
+        else
+        {
+            start=-nums[0];
+            start+=1;
+        }
+        for(int i=0;i<nums.size();i+=1)
+        {
+            if(i==0)
+           sum+=nums[i]+start;
+            else
+                sum+=nums[i];
+            if(sum<=0)
+            {
+                if(sum<0)
+                start+=0-sum;        
+                start+=1;
+                sum=1;
+            }   
+        }
+        return start;
+    }
+};
